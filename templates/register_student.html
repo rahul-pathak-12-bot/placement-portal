@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}Student Registration{% endblock %}
+
+{% block content %}
+<div class="reg-container">
+    <div class="reg-box">
+        <div class="reg-header">
+            <h2 class="reg-title">Student Registration</h2>
+            <p class="reg-subtitle">Create your account and start applying to placement drives</p>
+        </div>
+
+        <form method="POST" action="{{ url_for('register_student') }}" enctype="multipart/form-data" novalidate>
+            {{ form.hidden_tag() }}
+
+            <div class="reg-section-label">Personal Details</div>
+            <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">{{ form.name.label.text }}</label>
+                    {{ form.name(class="form-control" + (" is-invalid" if form.name.errors else "")) }}
+                    {% for e in form.name.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">{{ form.student_id.label.text }}</label>
+                    {{ form.student_id(class="form-control" + (" is-invalid" if form.student_id.errors else "")) }}
+                    {% for e in form.student_id.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">{{ form.email.label.text }}</label>
+                    {{ form.email(class="form-control" + (" is-invalid" if form.email.errors else "")) }}
+                    {% for e in form.email.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">{{ form.phone.label.text }}</label>
+                    {{ form.phone(class="form-control" + (" is-invalid" if form.phone.errors else "")) }}
+                    {% for e in form.phone.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+            </div>
+
+            <div class="reg-section-label mt-2">Academic Details</div>
+            <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">{{ form.branch.label.text }}</label>
+                    {{ form.branch(class="form-control" + (" is-invalid" if form.branch.errors else "")) }}
+                    {% for e in form.branch.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">{{ form.graduation_year.label.text }}</label>
+                    {{ form.graduation_year(class="form-control" + (" is-invalid" if form.graduation_year.errors else "")) }}
+                    {% for e in form.graduation_year.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">{{ form.cgpa.label.text }}</label>
+                    {{ form.cgpa(class="form-control" + (" is-invalid" if form.cgpa.errors else "")) }}
+                    {% for e in form.cgpa.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">{{ form.skills.label.text }}</label>
+                {{ form.skills(class="form-control" + (" is-invalid" if form.skills.errors else "")) }}
+                {% for e in form.skills.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Resume Drive Link</label>
+
+                <input 
+                    type="url" 
+                    name="resume_link" 
+                    placeholder="Paste your Google Drive resume link here"
+                    class="form-control"
+                    required>
+                        
+
+                <div class="form-text">
+                    Upload your resume to Google Drive and paste the shareable link here.
+                </div>
+            </div>
+
+            <div class="reg-section-label mt-2">Set Password</div>
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <label class="form-label">{{ form.password.label.text }}</label>
+                    {{ form.password(class="form-control" + (" is-invalid" if form.password.errors else ""), placeholder="Min 8 chars, 1 uppercase, 1 number") }}
+                    {% for e in form.password.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">{{ form.confirm.label.text }}</label>
+                    {{ form.confirm(class="form-control" + (" is-invalid" if form.confirm.errors else ""), placeholder="Repeat password") }}
+                    {% for e in form.confirm.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+            </div>
+
+            <button type="submit" class="login-btn">Create Student Account</button>
+        </form>
+
+        <p class="register-text mt-3">
+            Already registered? <a href="{{ url_for('login') }}">Sign in</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

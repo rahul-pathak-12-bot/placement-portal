@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Company Registration{% endblock %}
+
+{% block content %}
+<div class="reg-container">
+    <div class="reg-box">
+        <div class="reg-header">
+            <h2 class="reg-title">Company Registration</h2>
+            <p class="reg-subtitle">Register your company, our admin team will review and approve within 24 hours</p>
+        </div>
+
+        <form method="POST" action="{{ url_for('register_company') }}" novalidate>
+            {{ form.hidden_tag() }}
+
+            <div class="reg-section-label">Company Details</div>
+            <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">{{ form.company_name.label.text }}</label>
+                    {{ form.company_name(class="form-control" + (" is-invalid" if form.company_name.errors else "")) }}
+                    {% for e in form.company_name.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">{{ form.website.label.text }}</label>
+                    {{ form.website(class="form-control" + (" is-invalid" if form.website.errors else "")) }}
+                    {% for e in form.website.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">{{ form.description.label.text }}</label>
+                {{ form.description(class="form-control" + (" is-invalid" if form.description.errors else ""), rows=3) }}
+                {% for e in form.description.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+            </div>
+
+            <div class="reg-section-label mt-2">HR Contact</div>
+            <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">{{ form.hr_contact.label.text }}</label>
+                    {{ form.hr_contact(class="form-control" + (" is-invalid" if form.hr_contact.errors else "")) }}
+                    {% for e in form.hr_contact.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">{{ form.hr_email.label.text }}</label>
+                    {{ form.hr_email(class="form-control" + (" is-invalid" if form.hr_email.errors else "")) }}
+                    {% for e in form.hr_email.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+            </div>
+
+            <div class="reg-section-label mt-2">Login Credentials</div>
+            <div class="mb-3">
+                <label class="form-label">{{ form.email.label.text }}</label>
+                {{ form.email(class="form-control" + (" is-invalid" if form.email.errors else "")) }}
+                <div class="form-text">This will be your login email.</div>
+                {% for e in form.email.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+            </div>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <label class="form-label">{{ form.password.label.text }}</label>
+                    {{ form.password(class="form-control" + (" is-invalid" if form.password.errors else ""), placeholder="Min 8 chars, 1 uppercase, 1 number") }}
+                    {% for e in form.password.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">{{ form.confirm.label.text }}</label>
+                    {{ form.confirm(class="form-control" + (" is-invalid" if form.confirm.errors else ""), placeholder="Repeat password") }}
+                    {% for e in form.confirm.errors %}<div class="invalid-feedback">{{ e }}</div>{% endfor %}
+                </div>
+            </div>
+
+            <button type="submit" class="login-btn">Submit for Approval</button>
+        </form>
+
+        <p class="register-text mt-3">
+            Already registered? <a href="{{ url_for('login') }}">Sign in</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

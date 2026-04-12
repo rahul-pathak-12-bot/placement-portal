@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Placement History</h2>
+
+{% for app in applications %}
+<div class="custom-card">
+    {{ app.drive.job_title }} - {{ app.drive.company.name }}
+    <span class="badge 
+    {% if app.status == "Selected" %} bg-success
+    {% elif app.status == "Rejected" %} bg-danger
+    {% else %} bg-warning text-dark
+    {% endif %}">
+    {{ app.status }}
+</span>
+</div>
+{% endfor %}
+{% endblock %}

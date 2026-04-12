@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="choice-container">
+    <div class="choice-header">
+        <h2>Join Placement Portal</h2>
+        <p>Select your account type to get started</p>
+    </div>
+
+    <div class="choice-grid">
+        <a href="{{ url_for('register_student') }}" class="choice-card">
+            <h3>Student</h3>
+            <p>Register with your institute credentials, upload your resume, and start applying to placement drives.</p>
+            <span class="choice-cta">Register as Student</span>
+        </a>
+
+        <a href="{{ url_for('register_company') }}" class="choice-card">
+            <h3>Company</h3>
+            <p>Create a company profile and post placement drives.</p>
+            <span class="choice-cta">Register as Company</span>
+        </a>
+    </div>
+
+    <p class="text-center" style="font-size:14px; color:#666;">
+        Already have an account? <a href="{{ url_for('login') }}" style="font-weight:500;">Sign in</a>
+    </p>
+</div>
+{% endblock %}

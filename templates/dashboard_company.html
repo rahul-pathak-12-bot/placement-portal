@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Company Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <div>
+        <h2 class="dashboard-title">{{ company.name }}</h2>
+        <p class="dashboard-sub">{{ company.hr_email }}</p>
+    </div>
+    <span class="role-badge company">Company</span>
+</div>
+
+<div class="stats-cards">
+    <div class="stat-card">
+        <span class="stat-card-number">{{ company.drives.count() }}</span>
+        <span class="stat-card-label">Drives Posted</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-card-number">{{ company.total_applicants }}</span>
+        <span class="stat-card-label">Total Applicants</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-card-number">{{ company.approval_status }}</span>
+        <span class="stat-card-label">Account Status</span>
+    </div>
+</div>
+
+<div class="quick-actions">
+    <a href="{{ url_for('create_drive') }}" class="qa-card">
+        <span class="stat-card-label">Post New Drive</span>
+    </a>
+    <a href="{{ url_for('company_drives') }}" class="qa-card">
+        <span class="stat-card-label">My Drives</span>
+    </a>
+    <a href="{{ url_for('company_all_applications') }}" class="qa-card">
+        <span class="stat-card-label">Applications</span>
+    </a>
+    <a href="{{ url_for('edit_company_profile') }}" class="qa-card">
+        <span class="stat-card-label">Edit Profile</span>
+    </a>
+</div>
+{% endblock %}

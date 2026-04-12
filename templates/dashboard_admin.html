@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <div>
+        <h2 class="dashboard-title">Admin Dashboard</h2>
+        <p class="dashboard-sub">Placement Cell - full overview</p>
+    </div>
+    <span class="role-badge admin">Admin</span>
+</div>
+
+<form method="GET" action="{{ url_for('admin_search') }}" class="page-title">
+    <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Search students or companies">
+        <button class="btn-main">Search</button>
+    </div>
+</form>
+
+<div class="stats-cards">
+    <div class="stat-card">
+        <span class="stat-card-number">{{ stats.students }}</span>
+        <span class="stat-card-label">Total Students</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-card-number">{{ stats.companies }}</span>
+        <span class="stat-card-label">Companies</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-card-number">{{ stats.drives }}</span>
+        <span class="stat-card-label">Placement Drives</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-card-number">{{ stats.applications }}</span>
+        <span class="stat-card-label">Applications</span>
+    </div>
+</div>
+
+{% if stats.pending_companies > 0 %}
+<div class="dash-alert">
+    <strong>{{ stats.pending_companies }} company registration(s)</strong> awaiting your approval.
+    <a href="{{ url_for('admin_companies') }}" class="dash-alert-link">Review now   </a>
+</div>
+{% endif %}
+
+<div class="dash-section-label">Quick Actions</div>
+<div class="quick-actions">
+
+    <a href="{{ url_for('admin_companies') }}" class="qa-card">
+        <span class="stat-card-label">Manage Companies</span>
+    </a>
+
+    <a href="{{ url_for('admin_students') }}" class="qa-card">
+        <span class="stat-card-label">Manage Students</span>
+    </a>
+
+    <a href="{{ url_for('admin_drives') }}" class="qa-card">
+        <span class="stat-card-label">Placement Drives</span>
+    </a>
+
+    <a href="{{ url_for('admin_applications') }}" class="qa-card">
+        <span class="stat-card-label">All Applications</span>
+    </a>
+
+</div>
+{% endblock %}

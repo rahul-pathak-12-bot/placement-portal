@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Applications{% endblock %}
+{% block content %}
+<div class="page-container">
+    <h3 class="page-title">Applications for <span class="text-primary">{{ drive.job_title }}</span></h3>
+    {% for app in applications %}
+    <div class="custom-card">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="mb-1">{{ app.student.name }}</h5>
+                    <small class="text-muted">CGPA: {{ app.student.cgpa }}</small>
+                </div>
+                <div>
+                    {% if app.status == "Selected" %}
+                        <span class="badge bg-success">Selected</span>
+                    {% elif app.status == "Shortlisted" %}
+                        <span class="badge bg-info text-dark">Shortlisted</span>
+                    {% elif app.status == "Rejected" %}
+                        <span class="badge bg-danger">Rejected</span>
+                    {% elif app.status == "Pending" %}
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    {% else %}
+                        <span class="badge bg-secondary">{{ app.status }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="mt-3 d-flex gap-2 flex-wrap">
+
+                <a href="{{ url_for('update_application', app_id=app.id, status='Shortlisted') }}" 
+                   class="btn btn-warning btn-sm">
+                   Shortlist
+                </a>
+
+                <a href="{{ url_for('update_application', app_id=app.id, status='Selected') }}" 
+                   class="btn btn-success btn-sm">
+                   Select
+                </a>
+
+                <a href="{{ url_for('update_application', app_id=app.id, status='Rejected') }}" 
+                   class="btn btn-danger btn-sm">
+                   Reject
+                </a>
+                {% if app.student.resume_link %}
+                <a href="{{ app.student.resume_link }}" 
+                   target="_blank" 
+                   class="btn btn-primary btn-sm">
+                   View Resume
+                </a>
+                {% else %}
+                <span class="text-muted">No Resume</span>
+                {% endif %}
+            </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Student Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <div>
+        <h2 class="dashboard-title">Hi, {{ student.name.split()[0] }}</h2>
+        <p class="dashboard-sub">{{ student.branch }} · {{ student.graduation_year }} · CGPA {{ student.cgpa }}</p>
+    </div>
+    <span class="role-badge student">Student</span>
+</div>
+<div class="stats-cards">
+    <div class="stat-card">
+        <span class="stat-card-number">{{ student.applications.count() }}</span>
+        <span class="stat-card-label">Applications</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-card-number">
+            {% if student.placed %}
+                <span class="text-success">Placed</span>
+            {% else %}
+                <span class="text-danger">Not Placed</span>
+            {% endif %}
+        </span>
+        <span class="stat-card-label">Placement Status</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-card-number">{{ student.student_id }}</span>
+        <span class="stat-card-label">Student ID</span>
+    </div>
+</div>
+<div class="quick-actions">
+    <a href="{{ url_for('drives') }}" class="qa-card">
+        <span class="stat-card-label">Browse Drives</span>
+    </a>
+    <a href="{{ url_for('my_applications') }}" class="qa-card">
+        <span class="stat-card-label">My Applications</span>
+    </a>
+    <a href="{{ url_for('placement_history') }}" class="qa-card">
+        <span class="stat-card-label">Placement History</span>
+    </a>
+    <a href="{{ url_for('edit_profile') }}" class="qa-card">
+        <span class="stat-card-label">Edit Profile</span>
+    </a>
+    <a href="{{ student.resume_link }}" target="_blank" class="qa-card"><span class="stat-card-label">Resume</span></a>
+</div>
+{% endblock %}

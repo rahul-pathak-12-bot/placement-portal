@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container" style="max-width: 700px;">
+    <div class="card shadow-sm p-4">
+        <h2 class="page-title">Student Profile</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" name="name" value="{{ student.name }}" 
+                       class="form-control" required>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Branch</label>
+                    <input type="text" name="branch" value="{{ student.branch }}" 
+                           class="form-control" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">CGPA</label>
+                    <input type="number" step="0.01" name="cgpa" value="{{ student.cgpa }}" 
+                           class="form-control" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Phone Number</label>
+                <input type="text" name="phone" value="{{ student.phone }}" 
+                       class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Resume Link</label>
+                <input type="url" name="resume_link" value="{{ student.resume_link }}" 
+                       class="form-control" placeholder="Paste Google Drive link" required>
+                {% if student.resume_link %}
+                <div class="mt-2">
+                    <a href="{{ student.resume_link }}" target="_blank" 
+                       class="btn btn-sm btn-outline-info">
+                    View Current Resume
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Skills</label>
+                <textarea name="skills" class="form-control">{{ student.skills }}</textarea>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-success px-4">
+                    Update Student
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

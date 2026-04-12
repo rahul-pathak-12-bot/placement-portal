@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-badge">Campus Recruitment Platform</div>
+    <h1 class="hero-title">Find Your <span class="hero-accent">Dream Career</span><br>Before You Graduate</h1>
+    <p class="hero-sub">A Placement Cell portal connecting students and companies - from application to offer letter.</p>
+    <div class="hero-actions">
+        <a href="{{ url_for('register_student') }}" class="btn-hero primary">I'm a Student</a>
+        <a href="{{ url_for('register_company') }}" class="btn-hero secondary">I'm a Company</a>
+        <a href="{{ url_for('login') }}" class="btn-hero ghost">Sign In</a>
+    </div>
+</div>
+
+<div class="features-grid">
+    <div class="feature-card">
+        <h3>Admin Control</h3>
+        <p>Manager of companies, students, placement drives, and applications from one dashboard.</p>
+    </div>
+    <div class="feature-card">
+        <h3>For Companies</h3>
+        <p>Post drives, review applicants, shortlist candidates, and manage the recruitment.</p>
+    </div>
+    <div class="feature-card">
+        <h3>For Students</h3>
+        <p>A platform to get something which I am not getting. So just do it.</p>
+    </div>
+</div>
+{% endblock %}

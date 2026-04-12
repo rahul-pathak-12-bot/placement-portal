@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+
+<h2>Search Results for "{{ query }}"</h2>
+
+<hr>
+
+<h4>Students</h4>
+{% if students %}
+    {% for s in students %}
+    <div class="custom-card">
+        <strong>{{ s.name }}</strong> | {{ s.student_id }} | CGPA: {{ s.cgpa }}
+    </div>
+    {% endfor %}
+{% else %}
+    <p>No students found.</p>
+{% endif %}
+
+<hr>
+
+<h4>Companies</h4>
+{% if companies %}
+    {% for c in companies %}
+    <div class="custom-card">
+        <strong>{{ c.name }}</strong> | {{ c.hr_email }} | {{ c.approval_status }}
+    </div>
+    {% endfor %}
+{% else %}
+    <p>No companies found.</p>
+{% endif %}
+
+{% endblock %}

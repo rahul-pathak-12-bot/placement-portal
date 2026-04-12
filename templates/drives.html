@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Placement Drives{% endblock %}
+
+{% block content %}
+<h2>Available Placement Drives</h2>
+
+{% for drive in drives %}
+<div class="custom-card">
+    <h5>{{ drive.job_title }}</h5>
+    <p>{{ drive.description }}</p>
+    <p><strong>Company:</strong> {{ drive.company.name }}</p>
+    <p><strong>Deadline:</strong> {{ drive.deadline }}</p>
+
+    {% if drive.id in student.applied_drive_ids %}
+        <button class="btn btn-secondary" disabled>Already Applied</button>
+    {% else %}
+        <a href="{{ url_for('apply_drive', drive_id=drive.id) }}" class="btn-main">Apply</a>
+    {% endif %}
+</div>
+{% endfor %}
+{% endblock %}
