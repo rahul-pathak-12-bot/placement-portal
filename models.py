@@ -117,7 +117,6 @@ class PlacementDrive(db.Model):
     salary_range             = db.Column(db.String(100))
     deadline                 = db.Column(db.Date, nullable=False)
     status                   = db.Column(db.String(20), default="Pending", nullable=False, index=True)
-    # Pending | Approved | Closed | Rejected
     rejection_reason         = db.Column(db.Text)
     created_at               = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at               = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
